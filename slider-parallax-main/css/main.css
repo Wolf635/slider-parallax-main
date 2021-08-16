@@ -1404,6 +1404,7 @@ body {
   font-weight: 600;
   margin-top: 15px;
   margin: 15px 0px 20px 0px;
+  clear: both;
 }
 
 .slider-text__button {
@@ -1463,4 +1464,41 @@ body {
   margin-top: -270px;
   z-index: 2;
   right: calc(23.8% - 235px);
+}
+
+.slider-pagination-count {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  z-index: 100;
+  width: 120px;
+  height: 80px;
+}
+
+.slider-pagination-count .current {
+  font-size: 40px;
+  color: #f57500;
+  display: inline-block;
+  min-width: 42px;
+}
+
+.slider-pagination-current {
+  right: 40px;
+  bottom: 10px;
+  position: absolute;
+  font-size: 100px;
+  font-family: "Oswald", sans-serif;
+  color: #252525;
+  -webkit-text-stroke: 1px #7f7f7f;
+  /* свойство обводки цифры слайдера */
+  font-weight: 600;
+}
+
+.slider-pagination-current__dot {
+  color: #f57500;
+  -webkit-text-stroke: 1px transparent;
+  /* свойство обводки цифры слайдера */
 }

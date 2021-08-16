@@ -1,15 +1,21 @@
-// import { Swiper, Parallax } from 'swiper'
-// Swiper.use([Parallax])
+// import { Swiper, Parallax, Mousewheel, Controller, Pagination, Scrollbar, Navigation } from 'swiper'
+// Swiper.use([Parallax, Mousewheel, Controller, Pagination, Scrollbar, Navigation])
 
-import { gsap, Power2 } from 'gsap'
+// import { gsap, Power2 } from 'gsap'
 
 document.addEventListener('DOMContentLoaded', () => {
 
   const swiperIMG = new Swiper('.slider-img', {
     loop: false,
     speed: 2400,
-    parallax: true /* включение режима parallax */
-
+    parallax: true, /* включение режима parallax */
+    pagination: {
+      el: '.slider-pagination-count .total',
+      type: 'custom', /* кастомные стили  */
+      renderCustom: function (swiper, current, total) {
+        return `0${total}`
+      }
+    }
   })
 
   const swiperText = new Swiper('.slider-text', {
@@ -51,4 +57,30 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
+  let curnum = document.querySelector('.slider-pagination-count .current')
+  pagcur = document.querySelector('.slider-pagination-current__num')
+  swiperText.on('slideChange', function () {
+    let ind = swiperText.realIndex + 1
+    gsap.to(curnum, .2, {
+      force3D: true,
+      y: -10, /* анимация цифры 01 вверх */
+      opacity: 0,
+      ease: Power2.easeOut,
+      onComplete: function () {
+        gsap.to(curnum, .1, {
+          force3D: true,
+          y: 10 /* анимация цифры 01 */
+        })
+        curnum.innerHTML = `0${ind}` /* выводим переменную из строки 60 */
+        pagcur.innerHTML = `0${ind}` /* выводим переменную из строки 61 */
+      }
+    })
+    gsap.to(curnum, .2, {
+      forse3D: true,
+      y: 0,
+      opacity: 1,
+      ease: Power2.easeOut, /* анимация */
+      delay: .3 /* задержка времени */
+    })
+  })
 })
